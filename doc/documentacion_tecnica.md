@@ -47,6 +47,46 @@ El alcance del sistema define qué funcionalidades del sistema están incluídas
 
 - **Stock**: El stock de productos es ilimitado.
 
+## Diagrama de Arquitectura
+
+![Diagrama de Arquitectura](./diagrama_de_arquitectura.png)
+
+<details>
+  <summary>Codigo fuente para PlantUML</summary>
+
+```
+@startuml
+
+title Sistema de Canjes
+
+actor Usuario
+cloud Internet
+
+package "API pública" {
+    component Router
+}
+
+package "Middleware" {
+    component Controllers
+    component Models
+}
+
+package "Base de Datos" {
+    database PostgreSQL
+}
+
+Usuario <-> Internet
+Internet <-> Router
+Router <-down-> Controllers
+Controllers <-right-> Models
+Models <-right-> PostgreSQL
+
+@enduml
+```
+
+</details>
+
+
 ## Diagrama de Clases
 
 ![Diagrama de Clases](./diagrama_de_clases.png)
