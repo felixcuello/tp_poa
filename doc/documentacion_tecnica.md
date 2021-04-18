@@ -49,10 +49,10 @@ El alcance del sistema define qué funcionalidades del sistema están incluídas
 
 ## Diagrama de Clases
 
-### Código Fuente para PlantUML
-
 ![Diagrama de Clases](./diagrama_de_clases.png)
 
+<details>
+  <summary>Codigo fuente para PlantUML</summary>
 ```
 @startuml
 
@@ -99,6 +99,8 @@ Usuario -down- AuthToken
 
 @enduml
 ```
+</details>
+
 
 ## Diagrama de Base de Datos
 
