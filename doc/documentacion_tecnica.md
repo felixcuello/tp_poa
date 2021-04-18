@@ -6,7 +6,7 @@ El presente documento es una descripción técnica de un sistema de canje de pun
 
 Explica en detalle:
 
-- [Alcance del Sistema](#Alcance del sistema)
+- Alcance del Sistema
 
 - Diagrama de Clases
 
@@ -48,6 +48,57 @@ El alcance del sistema define qué funcionalidades del sistema están incluídas
 - **Stock**: El stock de productos es ilimitado.
 
 ## Diagrama de Clases
+
+### Código Fuente para PlantUML
+
+![Diagrama de Clases](./diagrama_de_clases.png)
+
+```
+@startuml
+
+title Sistema de Canjes
+
+class Usuario {
+  -String nombre
+  -Integer saldo
+  +String getNombre()
+  +Integer getSaldo()
+  +void canjear(Producto p)
+}
+
+class Producto {
+  -String nombre
+  -int valor
+  -Boolean disponible
+  +String getNombre()
+  +int getValor()
+  +Boolean estaDisponible()
+}
+
+class ProductoImagen {
+  -String uri
+  +String getURI()
+}
+
+class AuthToken {
+  -String token
+  -String user
+  -String hashed_pass
+  -String salt
+  -DateTime fecha_creacion
+  -Integer ttl
+  -String getHashedPass(pass)
+  
+  +String crearToken(String user, String pass)
+  +Boolean validToken(String token)
+}
+
+Usuario -right- "*" Producto
+Producto -right- "*" ProductoImagen
+Usuario -down- AuthToken
+
+@enduml
+```
 
 ## Diagrama de Base de Datos
 
