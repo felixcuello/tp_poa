@@ -1,0 +1,31 @@
+@startuml
+
+class producto {
++ String nombre
++ String get_nombre()
+}
+
+class imagen {
++ String url
++ String get_url()
+}
+
+class usuario {
++ String nombre
++ String apellido
++ String email
++ String token
++ String get_nombre()
++ String get_apellido()
++ String generate_token(String usuario, String, password)
+}
+
+class token {
++ String 
+}
+
+producto "1" -down- "*" imagen
+usuario "*" -right- "*" producto
+
+
+@enduml
