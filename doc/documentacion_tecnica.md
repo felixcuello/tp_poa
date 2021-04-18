@@ -145,4 +145,52 @@ Usuario -down- AuthToken
 
 ## Diagrama de Base de Datos
 
+![Diagrama de Clases](./diagrama_de_base_de_datos.png)
+
+<details>
+  <summary>Codigo fuente para PlantUML</summary>
+
+```
+@startuml
+
+title Classes - Diagrama de Base de Datos
+
+
+class Usuario {
+  + nombre : varchar
+  + user : varchar
+  + pass : varchar
+  + saldo_puntos : int
+  + created_at : datetime
+}
+
+class Producto {
+  + nombre : varchar
+  + puntos : int
+  + activo : bool
+  + created_at : datetime
+}
+
+class UsuarioProducto {
+  id_usuario : int
+  id_producto : int
+  puntos_usados : int
+  fecha_canje : datetime
+}
+
+class Token {
+  + token : varchar
+  + ttl : int
+  + created_at : datetime
+}
+
+Usuario -right- UsuarioProducto
+UsuarioProducto -right- Producto
+Usuario -down- Token
+
+@enduml
+```
+
+</details>
+
 ## Diagrama de Secuencia
