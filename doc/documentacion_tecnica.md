@@ -193,4 +193,26 @@ Usuario -down- Token
 
 </details>
 
-## Diagrama de Secuencia
+## Endpoints + Diagrama de Secuencia
+
+### Autenticación - `/api/v1/auth`
+
+
+![Diagrama de Secuencia - Autenticacion](./seq_autenticacion.png)
+
+<details>
+  <summary>Codigo fuente para WebSequenceDiagrams</summary>
+
+```
+title Autenticación
+
+participant Usuario
+participant Sistema
+
+note left of Sistema: /api/v1/auth
+
+Usuario->+Sistema: user + pass
+Sistema->+Database: token + ttl
+Database-->-Sistema: ack
+Sistema->-Usuario: token + ttl
+```
