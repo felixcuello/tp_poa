@@ -53,6 +53,7 @@ El alcance del sistema define qué funcionalidades del sistema están incluídas
 
 <details>
   <summary>Codigo fuente para PlantUML</summary>
+
 ```
 @startuml
 
@@ -99,8 +100,8 @@ Usuario -down- AuthToken
 
 @enduml
 ```
-</details>
 
+</details>
 
 ## Diagrama de Base de Datos
 
