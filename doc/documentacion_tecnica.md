@@ -221,6 +221,7 @@ Sistema->+Database: token + ttl
 Database-->-Sistema: ack
 Sistema->-Usuario: token + ttl
 ```
+</details>
 
 ### GET
 
@@ -242,6 +243,7 @@ Sistema->+Database: token + ttl
 Database-->-Sistema: ack
 Sistema->-Usuario: token + ttl
 ```
+</details>
 
 ### PATCH
 
@@ -263,6 +265,7 @@ Sistema->+Database: query
 Database-->-Sistema: datos del recurso
 Sistema->-Usuario: JSON del recurso
 ```
+</details>
 
 ### Canjear puntos | PATCH `/api/v1/user/:id/burn_points`
 
