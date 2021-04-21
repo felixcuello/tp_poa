@@ -269,11 +269,21 @@ Sistema->-Usuario: JSON del recurso
 
 ### Canjear puntos | PATCH `/api/v1/user/:id/burn_points`
 
-### Obtener Datos de usuario | GET `/api/v1/user/:id`
+Este endpoint se utiliza para canjear puntos del usuario por productos.
+
+### Obtener el los puntos restantes del usuario | GET `/api/v1/user/:id/balance`
+
+Este endpoint se utiliza para obtener los datos del usuario.
 
 ### Listar Productos | GET `/api/v1/product/list`
 
+Este endpoint se utiliza para listar los productos disponibles.
+
 ### Obtener Producto | GET `/api/v1/product/:id`
 
+Este endpoint se utiliza para obtener los datos de un producto.
+
 ### Obtener imagenes extra | GET `/api/v1/product/:id/images`
+
+Este endpoint se utiliza para obtener más imágenes del producto.
 
