@@ -193,10 +193,15 @@ Usuario -down- Token
 
 </details>
 
-## Endpoints + Diagrama de Secuencia
+## Endpoints
 
-### Autenticación - `/api/v1/auth`
+En general toos los endpoints explicados debajo tienen un diarama de secuencia análogo.
 
+Para no hacer el documento innecesariamente extenso pongo UN diagrama que muestra cómo sería un GET y un PATCH.
+
+Además agrego el endpoint de POST para la autenticación (que es el único que crea un recurso).
+
+### Autenticación | POST `/api/v1/user/auth`
 
 ![Diagrama de Secuencia - Autenticacion](./seq_autenticacion.png)
 
@@ -216,3 +221,56 @@ Sistema->+Database: token + ttl
 Database-->-Sistema: ack
 Sistema->-Usuario: token + ttl
 ```
+
+### GET
+
+![Diagrama de Secuencia - GET](./seq_get.png)
+
+<details>
+  <summary>Codigo fuente para WebSequenceDiagrams</summary>
+
+```
+title GET
+
+participant Usuario
+participant Sistema
+
+note left of Sistema: /api/v1/auth
+
+Usuario->+Sistema: user + pass
+Sistema->+Database: token + ttl
+Database-->-Sistema: ack
+Sistema->-Usuario: token + ttl
+```
+
+### PATCH
+
+![Diagrama de Secuencia - PATCH](./seq_patch.png)
+
+<details>
+  <summary>Codigo fuente para WebSequenceDiagrams</summary>
+
+```
+title PATCH
+
+participant Usuario
+participant Sistema
+
+note left of Sistema: <<endpoint correspondiente>> + JSON con los cambios al recurso
+
+Usuario->+Sistema: (:id) del recurso
+Sistema->+Database: query
+Database-->-Sistema: datos del recurso
+Sistema->-Usuario: JSON del recurso
+```
+
+### Canjear puntos | PATCH `/api/v1/user/:id/burn_points`
+
+### Obtener Datos de usuario | GET `/api/v1/user/:id`
+
+### Listar Productos | GET `/api/v1/product/list`
+
+### Obtener Producto | GET `/api/v1/product/:id`
+
+### Obtener imagenes extra | GET `/api/v1/product/:id/images`
+
