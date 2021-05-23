@@ -1,43 +1,32 @@
 version: "3"
 
+networks:
+  poa:
+    driver: bridge
+
 services:
   database:
-    build:
-      context: ./database
-      dockerfile: Dockerfile
-      args:
-        MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
-        MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    image: postgres:latest
+    ports:
+    - 5433:5432
     env_file:
-      - .env
+    - ".env"
     volumes:
-      - ./database/volume:/data/db
-
-  redis:
-    build:
-      args:
-        REDIS_URL: ${REDIS_URL}
-      context: ./redis
-      dockerfile: Dockerfile
+    - "./db_local/:/var/lib/postgresql/data/"
     env_file:
       - .env
+    networks:
+    - poa
 
   app:
     build:
-      context: ./app
+      context: .
       dockerfile: Dockerfile
     env_file:
       - .env
-    environment:
-      FLASK_ENV: "development"
-      LOG_LEVEL: "INFO"
-      UPLOAD_FOLDER: ${UPLOAD_FOLDER}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
-      MONGO_INITDB_HOSTNAME: 'database'
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     ports:
-      - 80:80
+      - 3000:80
     volumes:
-      - ./app:/app
+      - .:/app
+    networks:
+    - poa
