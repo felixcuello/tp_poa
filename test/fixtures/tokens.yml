@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: 
+  ttl: 2021-05-23 16:51:27
+  user_id: 
+
+two:
+  token: 
+  ttl: 2021-05-23 16:51:27
+  user_id: 
