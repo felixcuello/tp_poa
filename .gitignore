@@ -9,7 +9,7 @@
 #  Para este proyecto puse algunos custom ignores
 #----------------------------------------------------
 .env
-db_local/*
+db_local
 
 
 # Ignore bundler config.
