@@ -36,5 +36,9 @@ module TpPoa
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    #  TP_POA: De otra manera no levanta las cosas qusuarioe pongo acá
+    # ---------------------------------------------------------------------
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

@@ -3,7 +3,7 @@ class CreateTokens < ActiveRecord::Migration[6.1]
     create_table :tokens do |t|
       t.string :token
       t.datetime :ttl
-      t.integer :user_id
+      t.integer :usuario_id
 
       t.timestamps
     end

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_05_23_211306) do
   create_table "tokens", force: :cascade do |t|
     t.string "token"
     t.datetime "ttl"
-    t.integer "user_id"
+    t.integer "usuario_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
