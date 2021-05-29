@@ -24,9 +24,7 @@ module V1::Credentials
       raise ::Exceptions::TokenNotFound
     end
 
-    $usuario_id = token.usuario_id
-
-    token
+    Usuario.find(token.usuario_id)
   rescue => e
     #  En caso de cualquier error, es porque el bearer token no está
     #  bien formado, así que el Token no pudo ser comprobado

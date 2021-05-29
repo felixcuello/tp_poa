@@ -9,11 +9,8 @@ class Api::V1::ApplicationController < Api::V1::ExceptionsController
   protected
 
   def check_token
-    ::V1::Credentials.check_token(authorization: request.headers["Authorization"])
-  end
+    @usuario = ::V1::Credentials.check_token(authorization: request.headers["Authorization"])
 
-  def set_usuario
-    @usuario = Usuario.find(params[:id])
     raise ::Exceptions::UserNotFound if @usuario.nil?
   end
 

@@ -1,5 +1,4 @@
 class Api::V1::UsuarioProductosController < Api::V1::ApplicationController
-  before_action :set_usuario
   before_action :check_usuario, except: [:index]
   before_action :set_productos_canjeados, only: [:show]
 
