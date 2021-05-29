@@ -171,6 +171,11 @@ class Producto {
   + created_at : datetime
 }
 
+class ProductoImagen {
+  + url : varchar
+  + principal : boolean
+}
+
 class UsuarioProducto {
   id_usuario : int
   id_producto : int
@@ -184,9 +189,10 @@ class Token {
   + created_at : datetime
 }
 
-Usuario -right- UsuarioProducto
-UsuarioProducto -right- Producto
+Usuario -right- "*" UsuarioProducto
+UsuarioProducto "*" -right- Producto
 Usuario -down- Token
+Producto -down- "*" ProductoImagen
 
 @enduml
 ```
