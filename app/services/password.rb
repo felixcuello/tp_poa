@@ -2,12 +2,12 @@ require 'digest'
 
 module Password
   #------------------------------------------------------------------------
-  #  This generates a secure SHA512 hash to store in the database
-  #  to have an extra level of sercurity
+  #  Esto genera un hash SHA512 para utilizar con la password del usuario.
+  #  De esta manera no guardamos el password en texto plano.
   #
-  #  SECURITY NOTICE:
-  #  For the sake of this University project I am not going to use
-  #  a SALT to improve security
+  #  NOTA DE SEGURIDAD:
+  #  Técnicamente hay que usar una SALT y guardarla en la base de datos
+  #  pero no es necesario para los fines de este proyecto.
   #------------------------------------------------------------------------
   def self.sha512(string:)
     Digest::SHA2.new(512).hexdigest(string)

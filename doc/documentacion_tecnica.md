@@ -277,19 +277,22 @@ Sistema->-Usuario: JSON del recurso
 
 Este endpoint se utiliza para canjear puntos del usuario por productos.
 
-### Obtener el los puntos restantes del usuario | GET `/api/v1/user/:id/balance`
+### √ Obtener el los puntos restantes del usuario | GET `/api/v1/user/:id/balance`
 
 Este endpoint se utiliza para obtener los datos del usuario.
 
-### Listar Productos | GET `/api/v1/product/list`
+### √ Listar Productos | GET `/api/v1/productos/`
 
 Este endpoint se utiliza para listar los productos disponibles.
 
-### Obtener Producto | GET `/api/v1/product/:id`
+### √ Listar Productos Activos | GET `/api/v1/productos/`
+
+Este endpoint se utiliza para listar los productos disponibles.
+
+### √ Obtener Producto | GET `/api/v1/product/:id`
 
 Este endpoint se utiliza para obtener los datos de un producto.
 
-### Obtener imagenes extra | GET `/api/v1/product/:id/images`
+### √ Listar Usuarios | GET `/api/v1/usuarios/`
 
-Este endpoint se utiliza para obtener más imágenes del producto.
-
+Este endpoint se utiliza para listar los productos disponibles.

@@ -20,11 +20,17 @@ module V1::Credentials
     token = Token.where("token = ? AND ttl >= ?", token, Time.now).first
 
     if token.nil?
-      sleep 1 # Very simple throttling mechanism
+      sleep 1 # Un throttling realmente muy sencillo
       raise ::Exceptions::TokenNotFound
     end
 
-    token
+    Usuario.find(token.usuario_id)
+  rescue => e
+    #  En caso de cualquier error, es porque el bearer token no está
+    #  bien formado, así que el Token no pudo ser comprobado
+    #  (Siempre devuelve TokenNotFound para no brindar informacion de mas)
+    Rails.logger.error("Error el token no encontrado, excepcion #{e.message}")
+    raise ::Exceptions::TokenNotFound
   end
 
   private

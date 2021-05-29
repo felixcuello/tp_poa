@@ -9,7 +9,16 @@ class Api::V1::ApplicationController < Api::V1::ExceptionsController
   protected
 
   def check_token
-    ::V1::Credentials.check_token(authorization: request.headers["Authorization"])
+    @usuario = ::V1::Credentials.check_token(authorization: request.headers["Authorization"])
+
+    raise ::Exceptions::UserNotFound if @usuario.nil?
+  end
+
+  #  Este chequeo es por si algun pillo quiere usar un token valido de otro
+  #  usuario para obtener datos o hacer modificaciones en este usuario
+  # -----------------------------------------------------------------------
+  def check_usuario
+    raise ::Exceptions::UserNotFound if @usuario.id != $usuario_id
   end
 
   private

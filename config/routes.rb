@@ -5,11 +5,22 @@ Rails.application.routes.draw do
 
     namespace :api, defaults: { format: :json } do
       namespace :v1 do
+
         namespace :usuarios do
           post ':id/oauth', :action => 'oauth'
+          get ':id/balance', :action => 'balance'
+          patch ':id/burn_points', :action => 'burn_points'
         end
 
-        resources :productos, only: [:index, :show]
+        resources :usuarios, only: [:index, :show]
+
+        namespace :productos do
+          get '/activos', :action => 'activos'
+        end
+
+        resources :productos, only: [:show, :index]
+
+        resources :usuario_productos, only: [:show]
 
         # resources :payloads, only: [:show, :index, :update, :create, :destroy]
 
