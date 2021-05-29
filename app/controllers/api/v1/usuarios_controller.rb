@@ -1,8 +1,10 @@
 class Api::V1::UsuariosController < Api::V1::ApplicationController
-  before_action :check_usuario, except: [:index]
-
   def index
     render :json => Usuario.all
+  end
+
+  def oauth
+    render :json => {:token => @token, :valid_until => @valid_until}
   end
 
   def show
@@ -19,7 +21,7 @@ class Api::V1::UsuariosController < Api::V1::ApplicationController
   def burn_points
     body = ::Jwt.decode(usuario: @usuario, body: request.body.read).first
     balance = ::Burn.points(usuario: @usuario,
-                            producto_id: body["producto_id"])
+                            productos: body["productos"])
     render :json => {
              id: @usuario.id,
              balance: balance

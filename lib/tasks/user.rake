@@ -1,6 +1,17 @@
 namespace :create do
   desc "Crea o actualiza la password/puntos para los usuarios de prueba"
   task :sample_users => :environment do |t, args|
+    puts "---------------------------------------------------"
+    puts "  Reseteando usuarios"
+    puts "---------------------------------------------------"
+
+    puts "- Elimino todos los tokens"
+    Token.delete_all
+
+    puts "- Elimino todos los canjes"
+    UsuarioProducto.delete_all
+
+    puts "- Reseteando los saldos"
     usuario_rico = Usuario.find_by(user: 'usuario_rico')
     usuario_pobre = Usuario.find_by(user: 'usuario_pobre')
     password = Password.sha512(string: 'password')
@@ -23,6 +34,7 @@ namespace :create do
     usuario_pobre.password = password
     usuario_pobre.save!
 
+    puts ""
     puts "Los usuarios 'usuario_rico' y 'usuario_pobre' fueron actualizados!"
   end
 end
