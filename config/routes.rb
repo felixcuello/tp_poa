@@ -12,13 +12,15 @@ Rails.application.routes.draw do
           patch ':id/burn_points', :action => 'burn_points'
         end
 
-        resources :usuarios, only: [:index]
+        resources :usuarios, only: [:index, :show]
 
         namespace :productos do
           get '/activos', :action => 'activos'
         end
 
         resources :productos, only: [:show, :index]
+
+        resources :usuario_productos, only: [:show]
 
         # resources :payloads, only: [:show, :index, :update, :create, :destroy]
 

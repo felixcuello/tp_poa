@@ -6,6 +6,10 @@ class Api::V1::UsuariosController < Api::V1::ApplicationController
     render :json => Usuario.all
   end
 
+  def show
+    render :json => @usuario
+  end
+
   def balance
     render :json => {
              :id => @usuario.id,
