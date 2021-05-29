@@ -273,7 +273,7 @@ Sistema->-Usuario: JSON del recurso
 ```
 </details>
 
-### Canjear puntos | PATCH `/api/v1/user/:id/burn_points`
+### √ Canjear puntos | PATCH `/api/v1/user/:id/burn_points`
 
 Este endpoint se utiliza para canjear puntos del usuario por productos.
 
