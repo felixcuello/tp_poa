@@ -172,7 +172,7 @@ class Producto {
 }
 
 class ProductoImagen {
-  + url : varchar
+  + nombre : varchar
   + principal : boolean
 }
 
