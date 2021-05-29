@@ -271,7 +271,7 @@ Sistema->-Usuario: JSON del recurso
 
 Este endpoint se utiliza para canjear puntos del usuario por productos.
 
-### Obtener el los puntos restantes del usuario | GET `/api/v1/user/:id/balance`
+### √ Obtener el los puntos restantes del usuario | GET `/api/v1/user/:id/balance`
 
 Este endpoint se utiliza para obtener los datos del usuario.
 

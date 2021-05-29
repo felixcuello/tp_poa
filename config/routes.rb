@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         namespace :usuarios do
           post ':id/oauth', :action => 'oauth'
           get ':id/balance', :action => 'balance'
+          patch ':id/burn_points', :action => 'burn_points'
         end
 
         resources :usuarios, only: [:index]

@@ -15,7 +15,7 @@ namespace :create do
                                   user: 'usuario_pobre')
     end
 
-    usuario_rico.saldo_puntos = 10000000
+    usuario_rico.saldo_puntos = 30000
     usuario_rico.password = password
     usuario_rico.save!
 
