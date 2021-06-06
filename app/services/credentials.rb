@@ -1,6 +1,6 @@
 require 'securerandom'
 
-module V1::Credentials
+module Credentials
   #  Chequea que el usuario y contraseña exista, sino tira una excepcion
   #  Además genera el token
   # -----------------------------------------------------------------------

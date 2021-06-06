@@ -19,12 +19,10 @@ class Api::V1::UsuariosController < Api::V1::ApplicationController
   end
 
   def burn_points
-    body = ::Jwt.decode(usuario: @usuario, body: request.body.read).first
+    body = ::V1::Jwt.decode(usuario: @usuario, body: request.body.read).first
     balance = ::Burn.points(usuario: @usuario,
                             productos: body["productos"])
-    render :json => {
-             id: @usuario.id,
-             balance: balance
-           }
+
+    render json: {id: @usuario.id, balance: balance }
   end
 end

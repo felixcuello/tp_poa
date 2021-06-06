@@ -3,4 +3,5 @@ module Exceptions
   class TokenNotFound < StandardError; end
   class SaldoInsuficiente < StandardError; end
   class ProductoNotFound < StandardError; end
+  class InvalidSignature < StandardError; end
 end
