@@ -1,6 +1,6 @@
 require 'digest'
 
-module Password
+module V1::Password
   #------------------------------------------------------------------------
   #  Esto genera un hash SHA512 para utilizar con la password del usuario.
   #  De esta manera no guardamos el password en texto plano.

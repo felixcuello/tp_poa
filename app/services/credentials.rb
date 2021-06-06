@@ -6,7 +6,7 @@ module Credentials
   # -----------------------------------------------------------------------
   def self.check_username_password(user:, password:)
     u = Usuario.find_by({:user => user,
-                         :password => Password.sha512(string: password)})
+                         :password => ::V1::Password.sha512(string: password)})
 
     raise ::Exceptions::UserNotFound if u.nil?
 

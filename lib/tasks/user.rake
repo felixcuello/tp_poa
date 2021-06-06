@@ -14,7 +14,7 @@ namespace :create do
     puts "- Reseteando los saldos"
     usuario_rico = Usuario.find_by(user: 'usuario_rico')
     usuario_pobre = Usuario.find_by(user: 'usuario_pobre')
-    password = Password.sha512(string: 'password')
+    password = ::V1::Password.sha512(string: 'password')
 
     if usuario_rico.nil?
       usuario_rico = Usuario.new(nombre: 'Usuario de Prueba Rico',

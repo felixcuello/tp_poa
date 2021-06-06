@@ -99,48 +99,82 @@ Models <-right-> PostgreSQL
 
 title Sistema de Canjes
 
-class Usuario {
-  -String nombre
-  -Integer saldo
-  +String getNombre()
-  +Integer getSaldo()
-  +void canjear(Producto p)
+abstract ApplicationController {
 }
 
-class Producto {
-  -String nombre
-  -int valor
-  -Boolean disponible
-  +String getNombre()
-  +int getValor()
-  +Boolean estaDisponible()
+class Api::V1::ApplicationController {
 }
 
-class ProductoImagen {
-  -String uri
-  +String getURI()
+class Api::V1::ExceptionsController {
+  - void user_not_found()
+  - void token_not_found()
+  - void saldo_insuficiente()
+  - void producto_no_encontrado()
+  - void firma_invalida()
+  - void producto_inexistente()
+  + void rescue_from_exception(Exception e)
 }
 
-class AuthToken {
-  -String token
-  -String user
-  -String hashed_pass
-  -String salt
-  -DateTime fecha_creacion
-  -Integer ttl
-  -String getHashedPass(pass)
-  
-  +String crearToken(String user, String pass)
-  +Boolean validToken(String token)
+class Api::V1::ApplicationController {
+    + void check_token()
 }
 
-Usuario -right- "*" Producto
-Producto -right- "*" ProductoImagen
-Usuario -down- AuthToken
+class Api::V1::UsuariosController {
+    + void oauth(String usuario, String password)
+    + void show(int usuario_id)
+    + void balance(usuario_id)
+    + void burn_points(Usuario usuario, List<Pair<int,int>> ProductosCantidad)
+}
+
+class Api::V1::UsuariosProductosController {
+    + void show(int usuario_id)
+}
+
+class Api::V1::ProductosController {
+    + void index()
+    + void show(int producto_id)
+    + void activos()
+}
+
+class Api::V1::Burn << (M,#FF7700)>> {
+    + void points(int usuario_id, List<Productos>)
+}
+
+class Api::V1::Credentials<< (M,#FF7700)>> {
+    - String generate_token(String user)
+    + String check_username_password(String user, String password)
+    + Boolean check_token(String authorization_token)
+}
+
+class V1::Password  << (M,#FF7700)>> {
+    + String sha512(String password)
+}
+
+package Exceptions {
+    class UserNotFound << (E,#FF2200)>> {}
+    class TokenNotFound << (E,#FF2200)>> {}
+    class SaldoInsuficiente << (E,#FF2200)>> {}
+    class ProductoNotFound << (E,#FF2200)>> {}
+    class InvalidSignature << (E,#FF2200)>> {}
+}
+
+class V1::Jwt  << (M,#FF7700)>> {
+    + string decode(String body, String token, String algorithm)
+}
+
+Api::V1::UsuariosController -up-|> Api::V1::ApplicationController
+Api::V1::UsuariosProductosController -up-|> Api::V1::ApplicationController
+Api::V1::ProductosController -up-|> Api::V1::ApplicationController
+Api::V1::ApplicationController -up-|> Api::V1::ExceptionsController
+Api::V1::ExceptionsController -up-|> ApplicationController
+Api::V1::UsuariosController -down-> Api::V1::Burn
+Api::V1::UsuariosController -down-> V1::Jwt
+Api::V1::ApplicationController -left-> Api::V1::Credentials
+Api::V1::ApplicationController -right-> V1::Password
+Api::V1::ExceptionsController .right.> Exceptions
 
 @enduml
 ```
-
 </details>
 
 ## Diagrama de Base de Datos
@@ -271,6 +305,7 @@ Sistema->+Database: query
 Database-->-Sistema: datos del recurso
 Sistema->-Usuario: JSON del recurso
 ```
+
 </details>
 
 ### Canjear puntos | PATCH `/api/v1/user/:id/burn_points`
