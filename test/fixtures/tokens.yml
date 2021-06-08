@@ -3,9 +3,9 @@
 one:
   token: 
   ttl: 2021-05-23 16:51:27
-  user_id: 
+  usuario_id: 1
 
 two:
   token: 
   ttl: 2021-05-23 16:51:27
-  user_id: 
+  usuario_id: 1
