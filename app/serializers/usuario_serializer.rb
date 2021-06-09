@@ -1,5 +1,6 @@
 class UsuarioSerializer < ActiveModel::Serializer
-  attributes :nombre,
+  attributes :id,
+             :nombre,
              :user,
              :saldo_puntos,
              :created_at
